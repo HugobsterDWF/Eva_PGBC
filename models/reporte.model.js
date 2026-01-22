@@ -4,16 +4,20 @@ const crear = async (data) => {
   try {
     const pool = await getConnection();
     await pool.request()
-      .input('Tipo', sql.VarChar, data.tipo)
-      .input('NombreArchivo', sql.VarChar, data.nombreArchivo)
-      .input('RutaArchivo', sql.VarChar, data.rutaArchivo)
-      .input('TotalRegistros', sql.Int, data.totalRegistros)
-      .input('GeneradoPor', sql.VarChar, data.generadoPor)
-      .query(`
-        INSERT INTO ReporteArticulo
-        (Tipo, NombreArchivo, RutaArchivo, TotalRegistros, GeneradoPor)
-        VALUES (@Tipo, @NombreArchivo, @RutaArchivo, @TotalRegistros, @GeneradoPor)
-      `);
+  .input('Tipo', sql.VarChar, data.tipo)
+  .input('NombreArchivo', sql.VarChar, data.nombreArchivo)
+  .input('RutaArchivo', sql.VarChar, data.rutaArchivo)
+  .input('TotalRegistros', sql.Int, data.totalRegistros)
+  .input('GeneradoPor', sql.VarChar, data.generadoPor)
+  .query(`
+    INSERT INTO dbo.ReporteArticulo
+    (Tipo, NombreArchivo, RutaArchivo, TotalRegistros, GeneradoPor)
+    VALUES (@Tipo, @NombreArchivo, @RutaArchivo, @TotalRegistros, @GeneradoPor)
+  `);
+
+const result = await pool.request()
+    .query('SELECT * FROM dbo.ReporteArticulo ORDER BY FechaGeneracion DESC');
+
   } catch (error) {
     console.error('Error al guardar reporte:', error);
     throw error;
