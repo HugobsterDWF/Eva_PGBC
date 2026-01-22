@@ -6,7 +6,12 @@ const path = require('path');
 const articuloService = require('../services/articulo.service');
 const reporteModel = require('../models/reporte.model');
 
-/* ================= PDF ================= */
+const reportsDir = path.join(__dirname, '../reports');
+if (!fs.existsSync(reportsDir)) {
+  fs.mkdirSync(reportsDir, { recursive: true });
+}
+
+
 const generarPDF = async (req, res) => {
   const articulos = await articuloService.obtenerArticulos();
 
