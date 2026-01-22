@@ -1,0 +1,43 @@
+.reportes-panel {
+  margin-top: 2rem;
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 10px;
+}
+
+.reportes-actions {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.reportes-actions button {
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  background: #0f172a;
+  color: #fff;
+}
+
+.reportes-actions button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.reportes-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.reportes-table th,
+.reportes-table td {
+  padding: 0.7rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.reportes-table th {
+  background: #f8fafc;
+  text-align: left;
+}
