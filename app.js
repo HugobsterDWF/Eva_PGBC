@@ -13,6 +13,8 @@ app.use(express.json());
 
 app.use('/api/articulos', require('./routes/articulo.routes'));
 app.use('/api/auth', require('./routes/auth.routes'));
+app.use("/api/reportes", require("./routes/reporte.routes"));
+
 
 app.use(errorHandler);
 
