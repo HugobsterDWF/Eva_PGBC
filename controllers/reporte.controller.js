@@ -6,6 +6,7 @@ const path = require('path');
 const articuloService = require('../services/articulo.service');
 const reporteModel = require('../models/reporte.model');
 
+/* ================= PDF ================= */
 const generarPDF = async (req, res) => {
   const articulos = await articuloService.obtenerArticulos();
 
@@ -39,10 +40,6 @@ const generarPDF = async (req, res) => {
 
   res.download(ruta);
 };
-const reportsDir = path.join(__dirname, '../reports');
-if (!fs.existsSync(reportsDir)) {
-  fs.mkdirSync(reportsDir);
-}
 
 const generarExcel = async (req, res) => {
   const articulos = await articuloService.obtenerArticulos();
@@ -74,7 +71,13 @@ const generarExcel = async (req, res) => {
   res.download(ruta);
 };
 
+const listarReportes = async (req, res) => {
+  const reportes = await reporteModel.listar();
+  res.json(reportes);
+};
+
 module.exports = {
   generarPDF,
-  generarExcel
+  generarExcel,
+  listarReportes
 };
